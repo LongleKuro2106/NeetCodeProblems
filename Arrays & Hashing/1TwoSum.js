@@ -4,14 +4,15 @@
  * @return {number[]}
  */
 
+var twoSum = function (nums, target) {
+  const prevMap = new Map();
 
-function twoSum(nums, target) {
-  const numMap = {};
   for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
-    if (numMap.hasOwnProperty(complement)) {
-      return [numMap[complement], i];
-    }
-    numMap[nums[i]] = i;
+      const diff = target - nums[i];
+      if (prevMap.has(diff)) {
+          return [prevMap.get(diff), i];
+      }
+      prevMap.set(nums[i], i);
   }
+  return [];
 }
