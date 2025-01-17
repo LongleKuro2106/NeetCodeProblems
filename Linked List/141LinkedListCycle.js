@@ -11,16 +11,30 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-  let fast = head;
-  let slow = head;
+  // Fast && Slow Pointer Method: Reduce Space Complexity O(1)
+  // let fast = head;
+  // let slow = head;
 
-  while (fast !== null && fast.next !== null) {
-      fast = fast.next.next;
-      slow = slow.next;
+  // while (fast !== null && fast.next !== null) {
+  //     fast = fast.next.next;
+  //     slow = slow.next;
 
-      if (fast === slow) {
+  //     if (fast === slow) {
+  //         return true;
+  //     }
+  // }
+  // return false;
+
+
+  // Hash Set Method: Reduce time complexity but require more space
+  let seen = new Set();
+  let cur = head;
+  while (cur) {
+      if (seen.has(cur)) {
           return true;
       }
+      seen.add(cur);
+      cur = cur.next;
   }
   return false;
 };
